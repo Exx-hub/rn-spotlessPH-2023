@@ -1,5 +1,4 @@
 import { View, Text, Image } from "react-native";
-
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
 
@@ -23,6 +22,7 @@ const styles = StyleSheet.create({
   mainView: {
     flexDirection: "row",
     padding: 5,
+    paddingTop: 10,
     alignItems: "center",
   },
   homeText: {

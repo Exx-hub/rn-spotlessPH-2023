@@ -2,6 +2,10 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native";
 import { StyleSheet, Text, View } from "react-native";
 import Header from "../components/Header";
+import Search from "../components/Search";
+import HeroImage from "../components/HeroImage";
+import Services from "../components/Services";
+import Items from "../components/Items";
 
 const Home = () => {
   return (
@@ -9,10 +13,13 @@ const Home = () => {
       {/* HEADER  */}
       <Header />
       {/* SEARCH COMPONENT  */}
-      {/* HERO IMAGE  */}
+      <Search />
+      {/* HERO HeroImage  */}
+      <HeroImage />
       {/* SERVICES  */}
+      <Services />
       {/* ADD ITEMS  */}
-
+      <Items />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
