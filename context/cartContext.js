@@ -6,6 +6,12 @@ const initialState = {
   cartItems: [],
   numOfItems: 0,
   total: 0,
+  pickupDetails: {
+    address: "",
+    pickupDate: "",
+    time: "",
+    deliveryDate: "",
+  },
 };
 
 function reducer(state, action) {
@@ -38,6 +44,9 @@ function reducer(state, action) {
       }, 0);
 
       return { ...state, total: totalAmount, numOfItems: totalItems, cartItems: updatedCart };
+
+    case "CONFIRM_PICKUP_DETAILS":
+      return { ...state, pickupDetails: action.payload };
   }
 }
 

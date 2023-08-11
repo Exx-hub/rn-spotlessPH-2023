@@ -1,14 +1,18 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { useContext } from "react";
 import { CartContext } from "../context/cartContext";
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { AntDesign } from "@expo/vector-icons";
 import { Alert } from "react-native";
 
-const BottomBar = ({ isHome, isPickup }) => {
-  const { state } = useContext(CartContext);
+const BottomBar = ({ isHome, isPickup, address, time, pickupDate, deliveryDate }) => {
+  const { state, dispatch } = useContext(CartContext);
 
   const { total, cartItems, numOfItems } = state;
+
+  //   console.log({ total, cartItems, numOfItems });
+
+  //   console.log({ address, time, pickupDate, deliveryDate });
 
   const router = useRouter();
 
@@ -16,13 +20,17 @@ const BottomBar = ({ isHome, isPickup }) => {
     if (isHome) {
       router.push("/pickup");
     } else if (isPickup) {
-      // if(!address || !time || !deliveryDate){
-      //     Alert.alert("All fields are required!")
-      // }
+      if (!address || !time || !deliveryDate || !pickupDate) {
+        Alert.alert("All fields are required!");
+        return;
+      }
+
+      dispatch({
+        type: "CONFIRM_PICKUP_DETAILS",
+        payload: { address, time, deliveryDate, pickupDate },
+      });
 
       router.push("/checkout");
-    } else {
-      // router.push("/success")
     }
   };
   return (

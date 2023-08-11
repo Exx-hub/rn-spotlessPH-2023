@@ -1,4 +1,4 @@
-import { View, Text, TextInput, ScrollView, Pressable, StyleSheet, FlatList } from "react-native";
+import { View, Text, TextInput, ScrollView, Pressable, StyleSheet } from "react-native";
 import BottomBar from "../components/BottomBar";
 import { useState } from "react";
 
@@ -62,8 +62,6 @@ const PickupDetails = () => {
   const [pickupDate, setPickupDate] = useState(new Date().getDate());
   const [time, setTime] = useState(null);
   const [deliveryDate, setDeliveryDate] = useState(null);
-
-  console.log({ address, pickupDate, time, deliveryDate });
 
   return (
     <>
@@ -143,7 +141,13 @@ const PickupDetails = () => {
           </ScrollView>
         </View>
       </View>
-      <BottomBar isPickup />
+      <BottomBar
+        isPickup
+        address={address}
+        pickupDate={pickupDate}
+        time={time}
+        deliveryDate={deliveryDate}
+      />
     </>
   );
 };
