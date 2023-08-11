@@ -57,13 +57,11 @@ const Items = () => {
     <View style={styles.itemsView}>
       <Text style={styles.itemsTitle}>Quick Add:</Text>
 
-      <ScrollView>
-        <View style={styles.cardsView}>
-          {items.map((item) => (
-            <ItemCard key={item.id} {...item} />
-          ))}
-        </View>
-      </ScrollView>
+      <View style={styles.cardsView}>
+        {items.map((item) => (
+          <ItemCard key={item.id} {...item} />
+        ))}
+      </View>
     </View>
   );
 };

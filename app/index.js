@@ -1,27 +1,66 @@
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, ScrollView } from "react-native";
 import { StyleSheet, Text, View } from "react-native";
 import Header from "../components/Header";
 import Search from "../components/Search";
 import HeroImage from "../components/HeroImage";
 import Services from "../components/Services";
 import Items from "../components/Items";
+import { Pressable } from "react-native";
 
 const Home = () => {
+  const total = 0;
   return (
-    <SafeAreaView style={styles.container}>
-      {/* HEADER  */}
-      <Header />
-      {/* SEARCH COMPONENT  */}
-      <Search />
-      {/* HERO HeroImage  */}
-      <HeroImage />
-      {/* SERVICES  */}
-      <Services />
-      {/* ADD ITEMS  */}
-      <Items />
-      <StatusBar style="auto" />
-    </SafeAreaView>
+    <>
+      <ScrollView style={styles.container}>
+        {/* HEADER  */}
+        <Header />
+        {/* SEARCH COMPONENT  */}
+        <Search />
+        {/* HERO HeroImage  */}
+        <HeroImage />
+        {/* SERVICES  */}
+        <Services />
+        {/* ADD ITEMS  */}
+        <Items />
+
+        <StatusBar style="auto" />
+      </ScrollView>
+
+      {total === 0 ? null : (
+        <Pressable
+          style={{
+            backgroundColor: "black",
+            position: "absolute",
+            width: "92%",
+            bottom: 20,
+            left: 0,
+
+            padding: 10,
+            marginHorizontal: 15,
+            borderRadius: 7,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <View>
+            <Text style={{ fontSize: 17, fontWeight: "600", color: "white" }}>
+              2 items | $ {total}
+            </Text>
+            <Text style={{ fontSize: 12, fontWeight: "400", color: "white", marginVertical: 6 }}>
+              extra charges might apply
+            </Text>
+          </View>
+
+          <Pressable>
+            <Text style={{ fontSize: 17, fontWeight: "600", color: "white" }}>
+              Proceed to pickup
+            </Text>
+          </Pressable>
+        </Pressable>
+      )}
+    </>
   );
 };
 
