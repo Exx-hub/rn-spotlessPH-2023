@@ -12,69 +12,70 @@ const Checkout = () => {
   const { cartItems, total, pickupDetails } = state;
   const router = useRouter();
   return (
-    <ScrollView>
-      <View style={styles.mainContainer}>
-        <Pressable onPress={() => router.back()} style={styles.backIcon}>
-          <Ionicons name="arrow-back" size={24} color="black" />
-        </Pressable>
+    <>
+      <ScrollView>
+        <View style={styles.mainContainer}>
+          <Pressable onPress={() => router.back()} style={styles.backIcon}>
+            <Ionicons name="arrow-back" size={24} color="black" />
+          </Pressable>
 
-        <View style={{ marginTop: 20 }}>
-          <View style={styles.sectionContainer}>
-            <Text style={styles.headingText}>Your Bucket</Text>
-            {cartItems?.map((item) => (
-              <CartItem {...item} key={item.title} />
-            ))}
-          </View>
+          <View style={{ marginTop: 20 }}>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.headingText}>Your Bucket</Text>
+              {cartItems?.map((item) => (
+                <CartItem {...item} key={item.title} />
+              ))}
+            </View>
 
-          <View style={styles.sectionContainer}>
-            <Text style={styles.headingText}>Billing Details</Text>
-            <View style={styles.billingDetailsContainer}>
-              <View style={styles.billingItem}>
-                <Text style={styles.textLeft}>Item Total</Text>
-                <Text style={styles.fontBold}>₱{total}</Text>
-              </View>
-              <View style={styles.billingItem}>
-                <Text style={styles.textLeft}>Delivery Fee</Text>
-                <Text style={styles.fontLight}>FREE</Text>
-              </View>
-              <View
-                style={{ borderBottomColor: "#ececec", borderBottomWidth: 2, marginVertical: 5 }}
-              />
-              <View style={styles.billingItem}>
-                <Text style={styles.textLeft}>pickup date</Text>
-                <Text style={styles.fontLight}>{pickupDetails.pickupDate}</Text>
-              </View>
-              <View style={styles.billingItem}>
-                <Text style={styles.textLeft}>pickup time</Text>
-                <Text style={styles.fontLight}>{pickupDetails.time}</Text>
-              </View>
-              <View style={styles.billingItem}>
-                <Text style={styles.textLeft}>return delivery</Text>
-                <Text style={styles.fontLight}>{pickupDetails.deliveryDate}</Text>
-              </View>
-              <View
-                style={{ borderBottomColor: "#ececec", borderBottomWidth: 2, marginVertical: 5 }}
-              />
-              <View style={styles.billingItem}>
-                <Text>To Pay</Text>
-                <Text style={styles.fontBold}>₱{total}</Text>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.headingText}>Billing Details</Text>
+              <View style={styles.billingDetailsContainer}>
+                <View style={styles.billingItem}>
+                  <Text style={styles.textLeft}>Item Total</Text>
+                  <Text style={styles.fontBold}>₱{total}</Text>
+                </View>
+                <View style={styles.billingItem}>
+                  <Text style={styles.textLeft}>Delivery Fee</Text>
+                  <Text style={styles.fontLight}>FREE</Text>
+                </View>
+                <View
+                  style={{ borderBottomColor: "#ececec", borderBottomWidth: 2, marginVertical: 5 }}
+                />
+                <View style={styles.billingItem}>
+                  <Text style={styles.textLeft}>pickup date</Text>
+                  <Text style={styles.fontLight}>{pickupDetails.pickupDate}</Text>
+                </View>
+                <View style={styles.billingItem}>
+                  <Text style={styles.textLeft}>pickup time</Text>
+                  <Text style={styles.fontLight}>{pickupDetails.time}</Text>
+                </View>
+                <View style={styles.billingItem}>
+                  <Text style={styles.textLeft}>return delivery</Text>
+                  <Text style={styles.fontLight}>{pickupDetails.deliveryDate}</Text>
+                </View>
+                <View
+                  style={{ borderBottomColor: "#ececec", borderBottomWidth: 2, marginVertical: 5 }}
+                />
+                <View style={styles.billingItem}>
+                  <Text>To Pay</Text>
+                  <Text style={styles.fontBold}>₱{total}</Text>
+                </View>
               </View>
             </View>
           </View>
         </View>
-
-        <View style={styles.bottomBar}>
-          <View>
-            <Text style={styles.fontBold}>₱{total}</Text>
-            <Text style={styles.fontLight}>View Detailed Bill</Text>
-          </View>
-
-          <Pressable style={styles.confirmBtn}>
-            <Text style={styles.btnText}>Confirm Checkout</Text>
-          </Pressable>
+      </ScrollView>
+      <View style={styles.bottomBar}>
+        <View>
+          <Text style={styles.fontBold}>₱{total}</Text>
+          <Text style={styles.fontLight}>View Detailed Bill</Text>
         </View>
+
+        <Pressable style={styles.confirmBtn}>
+          <Text style={styles.btnText}>Confirm Checkout</Text>
+        </Pressable>
       </View>
-    </ScrollView>
+    </>
   );
 };
 
@@ -124,7 +125,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: 20,
     backgroundColor: "white",
-    marginBottom: 10,
   },
   confirmBtn: {
     backgroundColor: "black",
