@@ -1,10 +1,12 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
+import { CartContext } from "../context/cartContext";
 
 const Test = () => {
+  const { name } = useContext(CartContext);
   return (
     <View>
-      <Text>Test</Text>
+      <Text>{name}</Text>
     </View>
   );
 };

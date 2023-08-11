@@ -1,17 +1,23 @@
 import { View, Text, Image, StyleSheet, Pressable } from "react-native";
-import React from "react";
-import { Button } from "react-native";
+import React, { useContext } from "react";
+import { CartContext } from "../context/cartContext";
 
 const ItemCard = ({ title, image, price }) => {
+  const { dispatch } = useContext(CartContext);
+
+  const handleAdd = () => {
+    dispatch({ type: "ADD_ITEM", payload: { title, price } });
+  };
+
   return (
     <View style={styles.cardView}>
       <Image source={image} style={styles.cardImage} />
       <View>
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.price}>{price}</Text>
+        <Text style={styles.price}>₱{price}</Text>
       </View>
 
-      <Pressable style={styles.button}>
+      <Pressable style={styles.button} onPress={handleAdd}>
         <Text>Add</Text>
       </Pressable>
     </View>

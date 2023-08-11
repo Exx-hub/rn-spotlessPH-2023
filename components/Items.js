@@ -7,49 +7,49 @@ const Items = () => {
     {
       id: 0,
       title: "Blazer",
-      price: "₱50",
+      price: 50,
       image: require("../assets/items/blazer.png"),
     },
     {
       id: 1,
       title: "Dress",
-      price: "₱50",
+      price: 50,
       image: require("../assets/items/dress.png"),
     },
     {
       id: 2,
       title: "Hoodie",
-      price: "₱50",
+      price: 50,
       image: require("../assets/items/hoodie.png"),
     },
     {
       id: 3,
       title: "Jersey",
-      price: "₱20",
+      price: 20,
       image: require("../assets/items/jersey.png"),
     },
     {
       id: 4,
       title: "Shirt",
-      price: "₱25",
+      price: 25,
       image: require("../assets/items/shirt.png"),
     },
     {
       id: 5,
       title: "Shorts",
-      price: "₱20",
+      price: 20,
       image: require("../assets/items/shorts.png"),
     },
     {
       id: 6,
       title: "Sleeveless",
-      price: "₱25",
+      price: 25,
       image: require("../assets/items/sleevelss.png"),
     },
     {
       id: 7,
       title: "Trousers",
-      price: "₱30",
+      price: 30,
       image: require("../assets/items/trousers.png"),
     },
   ];
@@ -81,5 +81,6 @@ const styles = StyleSheet.create({
   },
   cardsView: {
     flex: 1,
+    marginBottom: 100,
   },
 });

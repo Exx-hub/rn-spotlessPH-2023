@@ -7,9 +7,14 @@ import HeroImage from "../components/HeroImage";
 import Services from "../components/Services";
 import Items from "../components/Items";
 import { Pressable } from "react-native";
+import { useContext } from "react";
+import { CartContext } from "../context/cartContext";
 
 const Home = () => {
-  const total = 0;
+  const { name, state, dispatch } = useContext(CartContext);
+
+  const { total, cartItems, numOfItems } = state;
+
   return (
     <>
       <ScrollView style={styles.container}>
@@ -27,7 +32,7 @@ const Home = () => {
         <StatusBar style="auto" />
       </ScrollView>
 
-      {total === 0 ? null : (
+      {total === 0 && cartItems < 1 ? null : (
         <Pressable
           style={{
             backgroundColor: "black",
@@ -46,7 +51,7 @@ const Home = () => {
         >
           <View>
             <Text style={{ fontSize: 17, fontWeight: "600", color: "white" }}>
-              2 items | $ {total}
+              {numOfItems} {`${numOfItems > 1 ? "items" : "item"}`} | $ {total}
             </Text>
             <Text style={{ fontSize: 12, fontWeight: "400", color: "white", marginVertical: 6 }}>
               extra charges might apply
