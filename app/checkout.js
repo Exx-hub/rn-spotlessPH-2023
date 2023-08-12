@@ -11,6 +11,10 @@ const Checkout = () => {
 
   const { cartItems, total, pickupDetails } = state;
   const router = useRouter();
+
+  const handleCheckout = () => {
+    router.push("/order-confirmed");
+  };
   return (
     <>
       <ScrollView>
@@ -71,7 +75,7 @@ const Checkout = () => {
           <Text style={styles.fontLight}>View Detailed Bill</Text>
         </View>
 
-        <Pressable style={styles.confirmBtn}>
+        <Pressable style={styles.confirmBtn} onPress={handleCheckout}>
           <Text style={styles.btnText}>Confirm Checkout</Text>
         </Pressable>
       </View>
