@@ -5,7 +5,18 @@ import { useRouter } from "expo-router";
 import { AntDesign } from "@expo/vector-icons";
 import { Alert } from "react-native";
 
-const BottomBar = ({ isHome, isPickup, address, time, pickupDate, deliveryDate }) => {
+const BottomBar = ({
+  isHome,
+  isPickup,
+  address,
+  time,
+  pickupDate,
+  deliveryDate,
+  setAddress,
+  setPickupDate,
+  setTime,
+  setDeliveryDate,
+}) => {
   const { state, dispatch } = useContext(CartContext);
 
   const { total, cartItems, numOfItems } = state;
@@ -29,6 +40,11 @@ const BottomBar = ({ isHome, isPickup, address, time, pickupDate, deliveryDate }
         type: "CONFIRM_PICKUP_DETAILS",
         payload: { address, time, deliveryDate, pickupDate },
       });
+
+      setAddress("");
+      setDeliveryDate(null);
+      setPickupDate(null);
+      setTime(null);
 
       router.push("/checkout");
     }

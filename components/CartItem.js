@@ -6,8 +6,10 @@ const CartItem = ({ title, price, quantity }) => {
   return (
     <View style={styles.cartItemContainer}>
       <Text style={styles.itemText}>{title}</Text>
-      <PlusMinus quantity={quantity} />
-      <Text style={styles.itemText}>₱{price}</Text>
+      <PlusMinus quantity={quantity} title={title} />
+      <View style={{ minWidth: 35 }}>
+        <Text style={styles.itemText}>₱{price * quantity}</Text>
+      </View>
     </View>
   );
 };

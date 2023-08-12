@@ -11,15 +11,14 @@ const Home = () => {
   return (
     <>
       <ScrollView style={styles.container}>
-        {/* HEADER  */}
         <Header />
-        {/* SEARCH COMPONENT  */}
+
         <Search />
-        {/* HERO HeroImage  */}
+
         <HeroImage />
-        {/* SERVICES  */}
+
         <Services />
-        {/* ADD ITEMS  */}
+
         <Items />
 
         <StatusBar style="auto" />

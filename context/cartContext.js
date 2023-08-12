@@ -16,7 +16,7 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
-    case "ADD_ITEM":
+    case "ADD_ITEM": {
       const itemAdded = action.payload;
 
       // check if item already exists
@@ -28,7 +28,7 @@ function reducer(state, action) {
       const updatedCart = itemExists
         ? state.cartItems.map((item) =>
             item.title === itemExists.title
-              ? { ...itemAdded, quantity: itemExists.quantity + 1 }
+              ? { ...itemExists, quantity: itemExists.quantity + 1 }
               : item
           )
         : [...state.cartItems, { ...itemAdded, quantity: 1 }];
@@ -44,9 +44,65 @@ function reducer(state, action) {
       }, 0);
 
       return { ...state, total: totalAmount, numOfItems: totalItems, cartItems: updatedCart };
-
-    case "CONFIRM_PICKUP_DETAILS":
+    }
+    case "CONFIRM_PICKUP_DETAILS": {
       return { ...state, pickupDetails: action.payload };
+    }
+
+    case "REMOVE_ITEM": {
+      const title = action.payload;
+
+      const updatedCart = state.cartItems.filter((item) => item.title !== title);
+
+      // get total amount
+      const totalAmount = updatedCart.reduce((acc, curr) => {
+        return acc + curr.price * curr.quantity;
+      }, 0);
+
+      return { ...state, total: totalAmount, cartItems: updatedCart };
+    }
+
+    case "INCREMENT": {
+      const title = action.payload;
+
+      const updatedCart = state.cartItems.map((item) =>
+        item.title === title ? { ...item, quantity: item.quantity + 1 } : item
+      );
+
+      // get total amount
+      const totalAmount = updatedCart.reduce((acc, curr) => {
+        return acc + curr.price * curr.quantity;
+      }, 0);
+
+      return { ...state, total: totalAmount, cartItems: updatedCart };
+    }
+    case "DECREMENT": {
+      const title = action.payload;
+
+      const updatedCart = state.cartItems.map((item) =>
+        item.title === title ? { ...item, quantity: item.quantity - 1 } : item
+      );
+
+      const totalAmount = updatedCart.reduce((acc, curr) => {
+        return acc + curr.price * curr.quantity;
+      }, 0);
+
+      return { ...state, total: totalAmount, cartItems: updatedCart };
+    }
+
+    case "RESET_STATE": {
+      return {
+        cartItems: [],
+        numOfItems: 0,
+        total: 0,
+        pickupDetails: {
+          address: "",
+          pickupDate: "",
+          time: "",
+          deliveryDate: "",
+        },
+      };
+    }
   }
 }
 

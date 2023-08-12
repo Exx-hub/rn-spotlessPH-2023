@@ -1,20 +1,27 @@
-import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { useContext } from "react";
-import { CartContext } from "../context/cartContext";
-import { useRouter } from "expo-router";
+import { View, Text, StyleSheet, ScrollView, Alert, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { Pressable } from "react-native";
+import { useRouter } from "expo-router";
+
+import { CartContext } from "../context/cartContext";
 import CartItem from "../components/CartItem";
 
 const Checkout = () => {
-  const { state } = useContext(CartContext);
+  const { state, dispatch } = useContext(CartContext);
 
   const { cartItems, total, pickupDetails } = state;
   const router = useRouter();
 
   const handleCheckout = () => {
-    router.push("/order-confirmed");
+    if (cartItems.length > 0) {
+      dispatch({ type: "RESET_STATE" });
+      router.push("/order-confirmed");
+    } else {
+      Alert.alert("No items in bucket, redirecting to home!");
+      router.push("/");
+    }
   };
+
   return (
     <>
       <ScrollView>

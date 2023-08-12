@@ -1,6 +1,8 @@
-import { View, Text, TextInput, ScrollView, Pressable, StyleSheet } from "react-native";
-import BottomBar from "../components/BottomBar";
 import { useState } from "react";
+import { View, Text, TextInput, ScrollView, Pressable, StyleSheet } from "react-native";
+import { useRouter } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import BottomBar from "../components/BottomBar";
 
 const PickupDetails = () => {
   const days = [
@@ -63,13 +65,22 @@ const PickupDetails = () => {
   const [time, setTime] = useState(null);
   const [deliveryDate, setDeliveryDate] = useState(null);
 
+  const router = useRouter();
+
   return (
     <>
       <View style={styles.mainContainer}>
+        <Pressable onPress={() => router.back()} style={styles.backIcon}>
+          <Ionicons name="arrow-back" size={24} color="black" />
+        </Pressable>
         <View>
           {/* textarea  */}
           <Text style={styles.labelText}>Enter Address</Text>
-          <TextInput onChangeText={(text) => setAddress(text)} style={styles.addressInput} />
+          <TextInput
+            value={address}
+            onChangeText={(text) => setAddress(text)}
+            style={styles.addressInput}
+          />
 
           {/* pickup date  */}
           <Text style={styles.labelText}>Pickup Date</Text>
@@ -144,9 +155,13 @@ const PickupDetails = () => {
       <BottomBar
         isPickup
         address={address}
+        setAddress={setAddress}
         pickupDate={pickupDate}
+        setPickupDate={setPickupDate}
         time={time}
+        setTime={setTime}
         deliveryDate={deliveryDate}
+        setDeliveryDate={setDeliveryDate}
       />
     </>
   );
@@ -158,6 +173,12 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: "white",
+    paddingTop: 30,
+  },
+  backIcon: {
+    top: 5,
+    left: 5,
+    position: "absolute",
   },
   labelText: {
     fontSize: 16,
